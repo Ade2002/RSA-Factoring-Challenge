@@ -49,3 +49,39 @@ int main(int argc, char *argv[]){
    return 0;
 
 }
+
+
+
+
+
+#!/usr/bin/python3
+import sys
+import math
+
+
+def reading(file):
+    # total = 0
+    with open(file) as data:
+        new_data = data.readlines()
+        # print(new_data)
+    return new_data
+
+
+for file_index in range(len(sys.argv)):
+    if file_index != 0:
+        data = reading(sys.argv[file_index])
+        for item in data:
+            number = int(item)
+            # print(number)
+
+            if number % 2 == 0:
+                print("{}*2".format(number//2))
+                continue
+            for i in range(3, number, 2):
+                if number % i == 0:
+                    factor = number//i
+                    for j in range(3, factor, 2):
+                        if factor % j == 0 or i % j == 0:
+                                break
+                        print("{}*{}".format(factor, i))
+                        break

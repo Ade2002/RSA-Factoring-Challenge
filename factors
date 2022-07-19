@@ -1,51 +1,33 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-void factorize(int number, int *factor1, int *factor2){
-
-    // using bruteforce to split number
-    for (int i = 2; i < number ; i++){
-
-        // check if i is a prime number or not
-        // if solve is an integer 
-        if (number % i == 0) {
-            int solve = number / i;
-            *factor1 = solve;
-            *factor2 = i;
-            break;
-        }
-    }
-
-}
-
-int main(int argc, char *argv[]){
-
-  FILE *fptr;
-  int number, number1, number2;
-  
+#!/usr/bin/python3
+import sys
+import math
 
 
-   // use appropriate location if you are using MacOS or Linux
-   fptr = fopen(argv[1],"r");
+def reading(file):
+    # total = 0
+    with open(file) as data:
+        new_data = data.readlines()
+        # print(new_data)
+    return new_data
 
-   if(fptr == NULL)
-   {
-      printf("Error!");   
-      exit(1);             
-   }
 
-   // breaking rsa with bruteforce
- 
-
-    while (fscanf(fptr, "%d", &number) != EOF ) {
-    factorize(number, &number1, &number2);
-    printf("%i, %i \n", number1, number2);
-    }
-   
-   
-
-   fclose(fptr);
-
-   return 0;
-
-}
+for file_index in range(len(sys.argv)):
+    if file_index != 0:
+        data = reading(sys.argv[file_index])
+        for item in data:
+            number = int(item)
+            # print(number)
+            print("{:d}=".format(number), end="")
+            if number % 2 == 0:
+                print("{}*2".format(number//2))
+                continue
+            sqn = int(math.sqrt(number))
+            if sqn % 2 == 0:
+                sqn += 1
+            for i in range(3, sqn + 1, 2):
+                if number % i == 0:
+                    print("{}*{}".format(i, number//i))
+                    break
+            if number % i != 0:
+                print("{}*1".format(number))
+                

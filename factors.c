@@ -21,7 +21,8 @@ void factorize(int number, int *factor1, int *factor2){
 int main(int argc, char *argv[]){
 
   FILE *fptr;
-  int number, number1, number2;
+  unsigned long number;
+  int number1, number2;
   
 
 
@@ -39,7 +40,7 @@ int main(int argc, char *argv[]){
 
     while (fscanf(fptr, "%d", &number) != EOF ) {
     factorize(number, &number1, &number2);
-    printf("%i, %i \n", number1, number2);
+    printf("%i=%i*%i \n",number, number1, number2);
     }
    
    
